@@ -1,0 +1,41 @@
+list: original list
+list2: list without linear terms
+list3: from run5 with rewritten code around target modes
+
+matlab output1,2,3 corresponds to the same thing
+
+output 4: for full convolution
+output 5: for physical space 
+
+------------ fixes in symmetry --------------
+
+output 6: after fixes in symmetry
+
+(list and list2 now removed)
+
+list: now a big list with very low thresholds
+
+
+new output: current threshold solution
+output 2: full convolution for ~50 steps
+output 3: blown up simulation with threshold of 3e-7
+
+output 7: list with high threshold to look at effect of band difference
+
+---------- hopefully correct code (wednesday) -----------
+
+output 8: threshold 3e-6 with hopefully correct code
+
+temp and temp2: blow up simulation for 3e-6 with different interface heights
+
+output : one snapshot from csd3 full advection calc
+2: low threshold
+3: very high threshold
+4: very high threshold with low cfl
+
+
+--------- restart ------------- (16/7)
+
+15: normal dns
+1: normal but without 64th? idk
+2: 8e-6 threshold, blowing up....

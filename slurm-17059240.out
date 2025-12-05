@@ -1,0 +1,192 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/scalasca/case_nx32/sm180_30.
+
+JobID: 17059240
+======
+Time: Tue Nov  4 17:24:10 GMT 2025
+Running on master node: cpu-r-24
+Current directory: /rds/user/ld751/hpc-work/scalasca/case_nx32/sm180_30
+
+Nodes allocated:
+================
+cpu-r-24
+
+numtasks=12, numnodes=1, mpi_tasks_per_node=12 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+scalasca -analyze mpirun -ppn=12 -np=12 ./littleharsh 
+
+S=C=A=N: Scalasca 2.6.1 runtime summarization
+S=C=A=N: ./scorep_littleharsh_12_sum experiment archive
+S=C=A=N: Tue Nov  4 17:24:12 2025: Collect start
+/usr/local/software/spack/spack-views/rocky8-icelake-20220710/intel-oneapi-mpi-2021.6.0/intel-2021.6.0/guxuvcpmykplbrr2e3af2yd7njqhau5e/mpi/2021.6.0//bin/mpirun -ppn=12 -np=12 ./littleharsh
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+ ------------------------------------------
+ 
+iband 1 planes  30 procs   5     proc_load      14400.00
+iband 2 planes  92 procs   2     proc_load     110400.00
+iband 3 planes  30 procs   5     proc_load      14400.00
+ 
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0032x0032x0153_t00000.dat
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ getting
+ u1 from file ./input//u1_0032x0032x0153_t00000.dat,
+ u2 from file ./input//u2_0032x0032x0153_t00000.dat,
+ u3 from file ./input//u3_0032x0032x0153_t00000.dat,
+ and p from file ./input//p_0032x0032x0153_t00000.dat,
+ 
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx              32          32          32
+ Nz              32          32          32
+ Nyv              0          29         122         151
+ Nyu              0          30         122         152
+ Ngalx           48          48          48
+ Ngalz           48          48          48
+ Ngaly           29          93          29
+ Ngalyu          30          92          30
+ 
+ dymin   1.225435224106675E-003
+ dymax   1.614068685092982E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ 
+ Initialised
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.115146864863802E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   0.936654280409236     
+ Qx     1.65397309785735     
+ mpgx -3.067500000000000E-003
+ Umax  0.983870648974122     
+ Uslp -2.168325426971271E-015
+ 
+ iter           5
+ t     2.643933581079753E-002
+ dtv   2.115146864863802E-003
+ dtc   3.341083610140600E-002
+ dt    5.287867162159505E-003
+ err   1.322492015381060E-016
+ Qx     1.65380005445959     
+ mpgx -3.067500000000000E-003
+ Umax  0.983897762983665     
+ Uslp -2.116484685172468E-015
+ 
+ iter          10
+ t     5.287867162159504E-002
+ dtv   2.115146864863802E-003
+ dtc   3.339607462648152E-002
+ dt    5.287867162159505E-003
+ err   1.666779512946625E-016
+ Qx     1.65364041996247     
+ mpgx -3.067500000000000E-003
+ Umax  0.983925570332886     
+ Uslp -2.045981276326096E-015
+ 
+ iter          15
+ t     7.931800743239258E-002
+ dtv   2.115146864863802E-003
+ dtc   3.516714766191661E-002
+ dt    5.287867162159505E-003
+ err   1.463761272588806E-016
+ Qx     1.65349294178853     
+ mpgx -3.067500000000000E-003
+ Umax  0.983954006834888     
+ Uslp -1.982389966386230E-015
+ 
+ iter          20
+ t     0.105757343243190     
+ dtv   2.115146864863802E-003
+ dtc   3.840014832246851E-002
+ dt    5.287867162159505E-003
+ err   7.504083434300871E+217
+ Qx     1.65335563906720     
+ mpgx -3.067500000000000E-003
+ Umax  0.983983010092937     
+ Uslp -1.929166804806126E-015
+ process           1 over
+ process           2 over
+ process           3 over
+ process           4 over
+ process           5 over
+ process           6 over
+ process           7 over
+ process           8 over
+ process           9 over
+ process          10 over
+ process          11 over
+ process           0 over
+ 
+ ---------------LITTLE HARSH---------------
+          'That wasn't that harsh'         
+ ------------------------------------------
+ 
+S=C=A=N: Tue Nov  4 17:28:00 2025: Collect done (status=0) 228s
+S=C=A=N: ./scorep_littleharsh_12_sum complete.

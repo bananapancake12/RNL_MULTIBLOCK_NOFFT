@@ -1,0 +1,129 @@
+S=C=A=N: Tue Nov  4 17:24:12 2025: Collect start
+/usr/local/software/spack/spack-views/rocky8-icelake-20220710/intel-oneapi-mpi-2021.6.0/intel-2021.6.0/guxuvcpmykplbrr2e3af2yd7njqhau5e/mpi/2021.6.0//bin/mpirun -ppn=12 -np=12 ./littleharsh
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+ ------------------------------------------
+ 
+iband 1 planes  30 procs   5     proc_load      14400.00
+iband 2 planes  92 procs   2     proc_load     110400.00
+iband 3 planes  30 procs   5     proc_load      14400.00
+ 
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0032x0032x0153_t00000.dat
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ getting
+ u1 from file ./input//u1_0032x0032x0153_t00000.dat,
+ u2 from file ./input//u2_0032x0032x0153_t00000.dat,
+ u3 from file ./input//u3_0032x0032x0153_t00000.dat,
+ and p from file ./input//p_0032x0032x0153_t00000.dat,
+ 
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx              32          32          32
+ Nz              32          32          32
+ Nyv              0          29         122         151
+ Nyu              0          30         122         152
+ Ngalx           48          48          48
+ Ngalz           48          48          48
+ Ngaly           29          93          29
+ Ngalyu          30          92          30
+ 
+ dymin   1.225435224106675E-003
+ dymax   1.614068685092982E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ 
+ Initialised
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.115146864863802E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   0.936654280409236     
+ Qx     1.65397309785735     
+ mpgx -3.067500000000000E-003
+ Umax  0.983870648974122     
+ Uslp -2.168325426971271E-015
+ 
+ iter           5
+ t     2.643933581079753E-002
+ dtv   2.115146864863802E-003
+ dtc   3.341083610140600E-002
+ dt    5.287867162159505E-003
+ err   1.322492015381060E-016
+ Qx     1.65380005445959     
+ mpgx -3.067500000000000E-003
+ Umax  0.983897762983665     
+ Uslp -2.116484685172468E-015
+ 
+ iter          10
+ t     5.287867162159504E-002
+ dtv   2.115146864863802E-003
+ dtc   3.339607462648152E-002
+ dt    5.287867162159505E-003
+ err   1.666779512946625E-016
+ Qx     1.65364041996247     
+ mpgx -3.067500000000000E-003
+ Umax  0.983925570332886     
+ Uslp -2.045981276326096E-015
+ 
+ iter          15
+ t     7.931800743239258E-002
+ dtv   2.115146864863802E-003
+ dtc   3.516714766191661E-002
+ dt    5.287867162159505E-003
+ err   1.463761272588806E-016
+ Qx     1.65349294178853     
+ mpgx -3.067500000000000E-003
+ Umax  0.983954006834888     
+ Uslp -1.982389966386230E-015
+ 
+ iter          20
+ t     0.105757343243190     
+ dtv   2.115146864863802E-003
+ dtc   3.840014832246851E-002
+ dt    5.287867162159505E-003
+ err   7.504083434300871E+217
+ Qx     1.65335563906720     
+ mpgx -3.067500000000000E-003
+ Umax  0.983983010092937     
+ Uslp -1.929166804806126E-015
+ process           1 over
+ process           2 over
+ process           3 over
+ process           4 over
+ process           5 over
+ process           6 over
+ process           7 over
+ process           8 over
+ process           9 over
+ process          10 over
+ process          11 over
+ process           0 over
+ 
+ ---------------LITTLE HARSH---------------
+          'That wasn't that harsh'         
+ ------------------------------------------
+ 
+S=C=A=N: Tue Nov  4 17:28:00 2025: Collect done (status=0) 228s

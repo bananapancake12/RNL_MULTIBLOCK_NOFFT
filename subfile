@@ -1,0 +1,15 @@
+#!/bin/sh
+#SBATCH --partition=sapphire
+#SBATCH --job-name="3e-9"
+#SBATCH --account="punim2676"
+#SBATCH --nodes=1
+#SBATCH --ntasks=80
+#SBATCH --mail-user=joy.ch.0407@gmail.com
+#SBATCH --mail-type=FAIL
+#SBATCH --mail-type=END
+#SBATCH --time=0-30:00:00
+
+module purge
+module load iompi
+
+mpirun -np 80 ./littleharsh

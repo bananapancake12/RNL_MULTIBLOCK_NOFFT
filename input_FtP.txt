@@ -1,0 +1,4 @@
+mgalx1=       768 ! collocation points in the x direction, band #1
+mgalz1=       384 ! collocation points per unity length in the z direction, band #1
+ny=           153 ! grid points in the y direction, y(0)=-1,y(ny-1)=1
+t=        013.1d0 ! time

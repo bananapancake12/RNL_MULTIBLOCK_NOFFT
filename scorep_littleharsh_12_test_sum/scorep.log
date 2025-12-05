@@ -1,0 +1,40 @@
+S=C=A=N: Mon Nov  3 21:08:14 2025: Collect start
+/usr/local/software/spack/spack-views/rocky8-icelake-20220710/intel-oneapi-mpi-2021.6.0/intel-2021.6.0/guxuvcpmykplbrr2e3af2yd7njqhau5e/mpi/2021.6.0//bin/mpirun -ppn=12 -np=12 ./littleharsh
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+ ------------------------------------------
+ 
+iband 1 planes  30 procs   5     proc_load       6528.00
+iband 2 planes  92 procs   2     proc_load      50048.00
+iband 3 planes  30 procs   5     proc_load       6528.00
+ 
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+ nx number does not agree between list and simulation
+S=C=A=N: Mon Nov  3 21:08:19 2025: Collect done (status=0) 5s
