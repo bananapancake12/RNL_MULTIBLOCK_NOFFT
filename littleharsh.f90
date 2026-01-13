@@ -94,8 +94,14 @@ program littleharsh
     write(*,*) ''
   end if
 
+  t1 = MPI_Wtime()
+
   ! Initialise
   call start(myid,status,ierr)
+
+  if(myid==0) then
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Start"
+  end if
 
 itersl=iter0
 nstatsl = nwrite
@@ -145,6 +151,10 @@ nstatsl = nwrite
     a(vgrid,iband)%fr = 0d0
   end do
 
+  if(myid==0) then
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Calling getini "
+  end if
+
   ! Get the initial conditions
   call getini(u1,u2,u3,p,div,myid,status,ierr)
 
@@ -159,7 +169,7 @@ nextqt = floor(t*10d0)/10d0+0.1d0
 
   ! MAIN LOOP 
   !do while (t<maxt) ! This is the original condition
-  do while (t<maxt .AND. iter < 5)
+  do while (t<maxt .AND. iter < 2)
     ! Runge-Kutta substeps
     do kRK = 1,3
       ! Build     linear terms of right-hand-side of Navier-Stokes equation
@@ -168,7 +178,7 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       call RHS0_u3(du3,u3,Nu3,p,myid)
     
       if(myid==0) then
-        write(6,*) "finished RHS =====> Building Nonlinear"
+        write(6,*) "t=", MPI_Wtime() - t1,"finished RHS =====> Building Nonlinear"
       end if 
       
       ! Build non-linear terms of right-hand-side of Navier-Stokes equation
@@ -179,7 +189,7 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       ! call solveU(u3,du3,3,myid)
 
       if(myid==0) then
-        write(6,*) "Finished Nonlinear =====> Solving"
+        write(6,*) "t=", MPI_Wtime() - t1,"Finished Nonlinear =====> Solving"
       end if 
 
 
@@ -187,7 +197,7 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       call solveV(u2,du2,a,myid)
 
       if(myid==0) then
-        write(6,*) "Finished Solving Velocities =====> Solving Pressure "
+        write(6,*) "t=", MPI_Wtime() - t1,"Finished Solving Velocities =====> Solving Pressure "
       end if 
 
       
@@ -356,9 +366,9 @@ subroutine error(A,myid,ierr)
     erri = max(erri,errband)
   end do
 
-  write(6,*) 'error(): size(A%f,1:2)=', size(A(iband)%f,1), size(A(iband)%f,2)
-  write(6,*) 'error(): jlim(1:2,pgrid)=', jlim(1,pgrid,iband), jlim(2,pgrid,iband)
-  write(6,*) 'error(): columns_num(iband,myid)=', columns_num(iband,myid), ' myid=', myid
+  ! write(6,*) 'error(): size(A%f,1:2)=', size(A(iband)%f,1), size(A(iband)%f,2)
+  ! write(6,*) 'error(): jlim(1:2,pgrid)=', jlim(1,pgrid,iband), jlim(2,pgrid,iband)
+  ! write(6,*) 'error(): columns_num(iband,myid)=', columns_num(iband,myid), ' myid=', myid
 
   call MPI_ALLREDUCE(erri,err,1,MPI_REAL8,MPI_MAX,MPI_COMM_WORLD,ierr)
 
@@ -493,6 +503,7 @@ subroutine flowrate_corr(u,mpg,g)
   !!!!!  velocity correction: !!!!!
   do j = 0,nn+2
     u(j) = u(j)+g*u11(j)
+    write(6,*) "u(j)", u(j), "j", j 
   end do
 
 end subroutine

@@ -88,7 +88,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   u3PL_itp = 0d0
 
   if(myid==0) then
-    write(6,*) "=====> Interpolating"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Interpolating"
   end if
 
   !C! Interpolate the grid velocities to the other grid points
@@ -107,7 +107,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   du3PL = 0d0
 
   if(myid==0) then
-    write(6,*) "=====> Modes to planes"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Modes to planes"
   end if
 
 
@@ -121,7 +121,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   call modes_to_planes_UVP ( u3PL_itp,u3_itp,vgrid,myid,status,ierr)
 
   if(myid==0) then
-    write(6,*) "=====> Spectra"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Spectra"
   end if
 
   !!!!!!!!!!!!!   spectra:  !!!!!!!!!!!!!
@@ -147,7 +147,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   ! endif
 
   if(myid==0) then
-    write(6,*) "=====> Record Out"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Record Out"
   end if
 
   !!!!!!!!!!!!! record out: !!!!!!!!!!!!!
@@ -238,14 +238,14 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   ! u3PL_itp(iLkup(64):iLkup(64)+1,:,:) = 0
 
   if(myid==0) then
-    write(6,*) "=====> Ops in Planes"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Ops in Planes"
   end if
 
   !!!!!!!!! four to ops: !!!!!!!!!
   call ops_in_planes(myid,flagst) !C! ops in planes to compute velocity products and x/z derriatives
 
   if(myid==0) then
-    write(6,*) "=====> Planes to modes"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Planes to modes"
   end if
 
   !C! Shift y derrivative products to modes
@@ -261,7 +261,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
 
   
   if(myid==0) then
-    write(6,*) "=====> Derivatives"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Derivatives"
   end if
 
   !C! Calculate y derrivatives
@@ -283,7 +283,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
    enddo   
 
   if(myid==0) then
-    write(6,*) "=====> CFL and Stats"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> CFL and Stats"
   end if
 
 
@@ -305,9 +305,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
       call der_z_N(u2PLN(1,1,j),wx(:,:,j),k1F_z,bandPL(myid)) !C! u2PL in Fourier space
 
-      if(j == 10 ) then
-        write(6,*) "wx", wx(:,10,j)
-      end if 
+      !if(j == 10 ) then
+        !write(6,*) "wx", wx(:,10,j)
+      !end if 
 
     end do
 
@@ -493,6 +493,9 @@ subroutine der_x(u,dudx,kx,iband)
   do k = 1,N(2,iband)/2
     do i = 0,N(1,iband)/2
       dudx(i,k) = kx(i)*u(i,k)
+      ! if (k==1) then 
+      !   write(6,*) "i", i,  "dudx", dudx(i,k)
+      ! end if 
       
     end do
     do i = N(1,iband)/2+1,Ngal(1,iband)/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
@@ -603,6 +606,7 @@ subroutine der_z_N(u,dudz,kz,iband)
   complex(8) u   (0:N(1,iband)/2,N(2,iband))
   complex(8) dudz(0:N(1,iband)/2,N(2,iband))
   complex(8) kz(1:N(2,1))
+
 
   if(iband/=2)then
     do k = 1,N(2,iband)
@@ -717,6 +721,7 @@ subroutine dtc_calc(u1,u2,u3,iband,myid)
   end do
 
   u3mloc = maxval(abs(u3))
+  write(6,*) "dthetavi", dthetavi
   
   dt = min(1d0/(alp*(N(1,iband)/2)*u1mloc),1d0/(bet*(N(2,iband)/2)*u3mloc),1d0/(u2mloc*dthetavi))
 
@@ -1723,6 +1728,7 @@ subroutine ops_in_planes(myid,flagst)
 
   use declaration
   implicit none
+  include 'mpif.h'
   
   integer i,k,j,l,myid,flagst,temp,jidx
   integer ia, ip, ka, kp, la, lp
@@ -1764,6 +1770,10 @@ subroutine ops_in_planes(myid,flagst)
         ! really the imaginary part should be 0 so no need to compute but anyway just in case
       end do
     end do
+
+    if(j==limPL_excw(ugrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
+    end if 
     
     ! linear advection
     ! wrong for 0th mode, 0,0 interaction should not be counted twice, but doesn't matter since differentiate = 0
@@ -1803,11 +1813,22 @@ subroutine ops_in_planes(myid,flagst)
     else 
       jidx = j
     end if
+
+    if(j==limPL_excw(ugrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Linear Advection - U", myid
+    end if 
+
+
     call nonlinInter(nonlin(jidx, 1), uu_cPL(1,1,j), u1PL(1,1,j), u1PL(1,1,j))
     call nonlinInter(nonlin(jidx, 3), uw_cPL(1,1,j), u3PL(1,1,j), u1PL(1,1,j))
     call nonlinInter(nonlin(jidx, 5), vv_cPL(1,1,j), u2PL_itp(1,1,j), u2PL_itp(1,1,j))
     call nonlinInter(nonlin(jidx, 7), wu_cPL(1,1,j), u1PL(1,1,j), u3PL(1,1,j))
     call nonlinInter(nonlin(jidx, 9), ww_cPL(1,1,j), u3PL(1,1,j), u3PL(1,1,j))
+
+    if(j==limPL_excw(ugrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Nonlin Inter U", myid
+    end if 
+
 
     ! if (j == 28) then
     !   write(ext4,'(i5.5)') int(1000d0*(t-700)+kRK)
@@ -1827,6 +1848,11 @@ subroutine ops_in_planes(myid,flagst)
     call der_z(uw_cPL(1,1,j),du1dz,k1F_z,bandPL(myid))
     call der_x(wu_cPL(1,1,j),du3dx,k1F_x,bandPL(myid))
     call der_z(ww_cPL(1,1,j),du3dz,k1F_z,bandPL(myid))
+
+    if(j==limPL_excw(ugrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -U", myid
+    end if 
+
    
     ! if (j == 28) then
     !   write(ext4,'(i5.5)') int(1000d0*(t-700)+kRK)
@@ -1855,12 +1881,22 @@ subroutine ops_in_planes(myid,flagst)
     !   write(11) Nu3PL(:,:,j)
     ! end if
     call four_to_phys_u(u1PL(1,1,j),u2PL_itp(1,1,j),u3PL(1,1,j),bandPL(myid))
+
+    if(j==limPL_excw(ugrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished U", myid
+    end if 
+
   end do
     
   uv_fPL = 0d0
   vu_fPL = 0d0
   vw_fPL = 0d0
   wv_fPL = 0d0
+
+
+  if(j==limPL_excw(ugrid,2,myid)) then
+    write(6,*) "t=", MPI_Wtime() - t1, "=====> Begining V", myid
+  end if 
     
   do j = limPL_excw(vgrid,1,myid),limPL_excw(vgrid,2,myid)
     ! nonlinear interaction into 0th mode
@@ -1884,6 +1920,10 @@ subroutine ops_in_planes(myid,flagst)
               & iNeg(i)*u3PL_itp(ia+1,ka,j)*u2PL(ip,kp,j)
       end do 
     end do
+
+    if(j==limPL_excw(vgrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
+    end if 
     
     ! linear advection
     buff(:,:) = u1PL_itp(1,1,j)*u2PL(:,:,j) + u2PL(1,1,j)*u1PL_itp(:,:,j)
@@ -1897,12 +1937,20 @@ subroutine ops_in_planes(myid,flagst)
     buff(1:2,1) = 0;
     wv_fPL(:,:,j) = wv_fPL(:,:,j) + buff(:,:)
 
+    if(j==limPL_excw(vgrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Linear Advection - V", myid
+    end if 
+
     ! nonlinear advection: go through a list
     ! fields = {'uu', 'uv', 'uw', 'vu', 'vv', 'vw', 'wu', 'wv', 'ww'}; in the order of 1 to 9, where the first is the passive
     call nonlinInter(nonlin(j, 2), uv_fPL(1,1,j), u2PL(1,1,j), u1PL_itp(1,1,j))
     call nonlinInter(nonlin(j, 4), vu_fPL(1,1,j), u1PL_itp(1,1,j), u2PL(1,1,j))
     call nonlinInter(nonlin(j, 6), vw_fPL(1,1,j), u3PL_itp(1,1,j), u2PL(1,1,j))
     call nonlinInter(nonlin(j, 8), wv_fPL(1,1,j), u2PL(1,1,j), u3PL_itp(1,1,j))
+
+    if(j==limPL_excw(vgrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Nonlin Inter v", myid
+    end if 
 
     ! if (j == 130) then
     !   write(11) uv_fPL(:,:,j)
@@ -1915,6 +1963,10 @@ subroutine ops_in_planes(myid,flagst)
     call der_x(vu_fPL(1,1,j),du2dx,k1F_x,bandPL(myid))
     call der_z(vw_fPL(1,1,j),du2dz,k1F_z,bandPL(myid))
 
+    if(j==limPL_excw(vgrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -V", myid
+    end if 
+
     do k = 1,Ngal(2,bandPL(myid))
       do i = 1,Ngal(1,bandPL(myid))
         Nu2PL(i,k,j) = du2dx(i,k)+du2dz(i,k)   
@@ -1922,6 +1974,10 @@ subroutine ops_in_planes(myid,flagst)
     end do
     
     call four_to_phys_u(u1PL_itp(1,1,j),u2PL(1,1,j),u3PL_itp(1,1,j),bandPL(myid))
+
+    if(j==limPL_excw(vgrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1, "Finished V =====> Finished Ops in planes", myid
+    end if 
   
   end do
   
@@ -2281,6 +2337,8 @@ subroutine planes_to_modes_UVP (x,xPL,grid,myid,status,ierr)
     if (jmaxR==Ny(grid,plband  )   .and. jmaxR>=jminR) then
       jmaxR = jmaxR+1
     end if
+
+    ! write(*,*) "rank", myid, "jminR/jmaxR:", jminR, jmaxR, "grid", grid
 
     ! "write(6,*) "jminR", jminR, "jmaxR", jmaxR
 

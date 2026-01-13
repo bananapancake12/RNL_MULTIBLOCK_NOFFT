@@ -35,6 +35,8 @@ module declaration
   integer,pointer:: columns_k(:,:,:)
   integer,pointer:: columns_num(:,:)
   integer,pointer:: dk_phys(:,:,:,:)
+
+  real(8) :: t1
   
   integer,pointer:: planeBC(:,:)
     

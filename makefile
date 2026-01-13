@@ -24,7 +24,7 @@ F77 = mpiifx
 #F90FLAGS = -c -warn -CB -debug extended
 # Debug flags (default for most files)
 # DEBUG_F90FLAGS = -c -O0 -g -check bounds -traceback #-check uninit -check pointers#-fpe0 #-warn all 
-DEBUG_F90FLAGS = -c -O0 -g -check all -traceback -debug all # -fpe0 -warn all
+DEBUG_F90FLAGS = -c -O0 -g -check all -traceback #-debug all # -fpe0 -warn all
 DEBUG_F77FLAGS = -c
 # FFT / performance-critical flags (used for FFT sources)
 FFT_F90FLAGS   = -c 

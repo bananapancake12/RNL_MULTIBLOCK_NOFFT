@@ -1651,7 +1651,7 @@ subroutine proc_lims_columns(myid)
   accum = 0
   do iproc = 0,np-1
     ! write(6,*) "iproc", iproc
-    write(6,*) "columns_num", columns_num(midband,iproc), iproc
+    ! write(6,*) "columns_num", columns_num(midband,iproc), iproc
     do column = 1,columns_num(midband,iproc)
       columns_i(column,midband,iproc) = columns_long_list_i(column + accum)
       columns_k(column,midband,iproc) = columns_long_list_k(column + accum)
