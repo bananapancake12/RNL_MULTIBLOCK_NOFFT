@@ -1,0 +1,9 @@
+*.o
+*.mod
+*.a
+*.so
+littleharsh
+output/
+slurm-*.out
+fort.*
+scorep_*/
